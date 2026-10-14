@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Inheritance Vault</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="brand">🔐 Digital Inheritance Vault</div>
+    <p>Dead Man's Switch · Cryptography PBL Demonstration</p>
+  </header>
+
+  <main class="container">
+    <section class="notice">
+      <strong>Academic demo only:</strong> this browser-only prototype stores demo data in this browser.
+      Do not enter real passwords, recovery codes, financial details, or private documents.
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <h1>Your Vault</h1>
+          <p class="muted">Encrypt a sample note and keep track of your check-in status.</p>
+        </div>
+        <span id="stateBadge" class="badge active">ACTIVE</span>
+      </div>
+
+      <label for="secret">Secret note</label>
+      <textarea id="secret" rows="4" placeholder="Enter a sample message to encrypt..."></textarea>
+
+      <label for="passphrase">Demo passphrase</label>
+      <input id="passphrase" type="password" placeholder="Enter a passphrase" autocomplete="off" />
+
+      <div class="actions">
+        <button id="encryptBtn">Encrypt & Save</button>
+        <button id="decryptBtn" class="secondary">Decrypt Saved Note</button>
+      </div>
+      <p id="cryptoStatus" class="status" aria-live="polite">No encrypted note saved yet.</p>
+      <div class="output">
+        <label for="ciphertext">Saved encrypted package (demo)</label>
+        <textarea id="ciphertext" rows="4" readonly placeholder="Encrypted data will appear here..."></textarea>
+      </div>
+      <div class="output">
+        <label for="decrypted">Decrypted result</label>
+        <textarea id="decrypted" rows="3" readonly placeholder="Your decrypted sample note will appear here..."></textarea>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Dead Man's Switch</h2>
+        <p class="muted">A check-in resets the demo inactivity timer. This is a simulated workflow, not a death-detection service.</p>
+        <label for="threshold">Demo inactivity threshold</label>
+        <select id="threshold">
+          <option value="1">1 minute (quick demo)</option>
+          <option value="5">5 minutes</option>
+          <option value="60">1 hour</option>
+          <option value="1440">24 hours</option>
+        </select>
+        <div class="timer-row">
+          <div><span class="small-label">Last check-in</span><strong id="lastCheckin">Not checked in</strong></div>
+          <div><span class="small-label">Time elapsed</span><strong id="elapsed">—</strong></div>
+        </div>
+        <div class="actions">
+          <button id="checkinBtn">I'm OK — Check In</button>
+          <button id="simulateBtn" class="warning">Simulate Inactivity</button>
+          <button id="cancelBtn" class="secondary">Cancel Release</button>
+        </div>
+        <p id="switchStatus" class="status" aria-live="polite">Switch is active. Check in to start.</p>
+      </article>
+
+      <article class="card">
+        <h2>Trusted Contact</h2>
+        <p class="muted">For demonstration, enter a contact label. No email or message is actually sent.</p>
+        <label for="recipient">Recipient name / label</label>
+        <input id="recipient" type="text" placeholder="e.g., Trusted Contact" />
+        <button id="saveRecipientBtn" class="secondary">Save Contact</button>
+        <p id="recipientStatus" class="status" aria-live="polite">No contact saved.</p>
+        <hr />
+        <h3>Security concepts</h3>
+        <ul>
+          <li>AES-GCM authenticated encryption</li>
+          <li>Fresh random nonce per encryption</li>
+          <li>Browser Web Crypto API</li>
+          <li>Simulated ACTIVE / GRACE / RELEASED states</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>Activity Log</h2>
+      <ul id="auditLog" class="audit"><li>Demo initialized.</li></ul>
+      <button id="clearBtn" class="text-button">Clear demo data from this browser</button>
+    </section>
+  </main>
+  <footer>Cryptography PBL · Digital Inheritance Vault · Educational prototype</footer>
+  <script src="script.js"></script>
+</body>
+</html>
